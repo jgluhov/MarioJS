@@ -4,6 +4,8 @@ import {createMarioEntity} from './entities.js';
 import {loadJSON} from './utils.js';
 import {loadBackgroundSprites} from './sprites.js';
 import {createBackgroundLayer, createSpriteLayer} from './layers.js';
+import Keyboard from './Keyboard.js';
+import {SPACE_KEY} from './constants.js'
 
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
@@ -16,14 +18,23 @@ Promise.all([
     const comp = new Compositor();
 
     const backgroundLayer = createBackgroundLayer(level.backgrounds, backgroundSprites);
-    comp.add(backgroundLayer);
+    comp.addLayer(backgroundLayer);
 
     const gravity = 30;
-    marioEntity.pos.set(0, 400);
-    marioEntity.vel.set(400, -600);
+    marioEntity.pos.set(300, 100);
+
+    const input = new Keyboard();
+    input.listenTo(window);
+    input.addMapping(SPACE_KEY, keyState => {
+        if (keyState) {
+            marioEntity.jump.start();
+        } else {
+            marioEntity.jump.cancel();
+        }
+    });
 
     const spriteLayer = createSpriteLayer(marioEntity);
-    comp.add(spriteLayer);
+    comp.addLayer(spriteLayer);
 
     const timer = new Timer(1/60);
 

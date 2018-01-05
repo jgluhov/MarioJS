@@ -1,4 +1,6 @@
 import Entity from './Entity.js';
+import Velocity from './behaviours/Velocity.js';
+import Jump from './behaviours/Jump.js';
 import {loadMarioSprite} from './sprites.js'
 
 export function createMarioEntity() {
@@ -10,10 +12,8 @@ export function createMarioEntity() {
                 sprite.draw('idle', context, this.pos.x, this.pos.y);
             };
 
-            mario.update = function updateMario(deltaTime) {
-                this.pos.x += this.vel.x * deltaTime;
-                this.pos.y += this.vel.y * deltaTime;
-            };
+            mario.addBehaviours(new Velocity());
+            mario.addBehaviours(new Jump());
 
             return mario;
         });

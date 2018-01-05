@@ -3,7 +3,7 @@ export default class Compositor {
         this.layers = [];
     }
 
-    add(layer) {
+    addLayer(layer) {
         this.layers.push(layer);
     }
 
