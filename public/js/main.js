@@ -1,9 +1,6 @@
-import Compositor from './Compositor.js';
 import Timer from './Timer.js';
 import {createMarioEntity} from './entities.js';
-import {loadJSON} from './utils.js';
-import {loadBackgroundSprites} from './sprites.js';
-import {createBackgroundLayer, createSpriteLayer} from './layers.js';
+import {loadLevel} from './utils.js';
 import Keyboard from './Keyboard.js';
 import {SPACE_KEY} from './constants.js'
 
@@ -12,13 +9,9 @@ const context = canvas.getContext('2d');
 
 Promise.all([
     createMarioEntity(),
-    loadBackgroundSprites(),
-    loadJSON('/levels/1-1.json')
-]).then(([marioEntity, backgroundSprites, level]) => {
-    const comp = new Compositor();
-
-    const backgroundLayer = createBackgroundLayer(level.backgrounds, backgroundSprites);
-    comp.addLayer(backgroundLayer);
+    loadLevel('1-1')
+]).then(([marioEntity, level]) => {
+    level.entities.add(marioEntity);
 
     const gravity = 30;
     marioEntity.pos.set(300, 100);
@@ -33,14 +26,11 @@ Promise.all([
         }
     });
 
-    const spriteLayer = createSpriteLayer(marioEntity);
-    comp.addLayer(spriteLayer);
-
     const timer = new Timer(1/60);
 
     timer.update = function updateTimer(deltaTime) {
-        comp.draw(context);
-        marioEntity.update(deltaTime);
+        level.comp.draw(context);
+        level.update(deltaTime);
 
         marioEntity.vel.y += gravity;
     };
