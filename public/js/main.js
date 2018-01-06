@@ -26,6 +26,16 @@ Promise.all([
         }
     });
 
+    ['mousedown', 'mousemove'].forEach(eventName => {
+        canvas.addEventListener(eventName, event => {
+            if (event.buttons === 1) {
+                marioEntity.vel.set(0, 0);
+                marioEntity.pos.set(event.offsetX, event.offsetY);
+            }
+        });
+    });
+
+
     const timer = new Timer(1/60);
 
     timer.update = function updateTimer(deltaTime) {
