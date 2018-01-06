@@ -28,8 +28,6 @@ export class Matrix {
     }
 }
 
-window.Matrix = Matrix;
-
 export class Vector2D {
     constructor(x, y) {
         this.set(x, y);
