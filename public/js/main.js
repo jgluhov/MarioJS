@@ -1,8 +1,7 @@
 import Timer from './Timer.js';
 import {createMarioEntity} from './entities.js';
 import {loadLevel} from './utils.js';
-import Keyboard from './Keyboard.js';
-import {SPACE_KEY} from './constants.js'
+import {setupKeyboard} from './input.js';
 
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
@@ -13,36 +12,16 @@ Promise.all([
 ]).then(([marioEntity, level]) => {
     level.entities.add(marioEntity);
 
-    const gravity = 30;
     marioEntity.pos.set(300, 100);
 
-    const input = new Keyboard();
+    const input = setupKeyboard(marioEntity);
     input.listenTo(window);
-    input.addMapping(SPACE_KEY, keyState => {
-        if (keyState) {
-            marioEntity.jump.start();
-        } else {
-            marioEntity.jump.cancel();
-        }
-    });
-
-    ['mousedown', 'mousemove'].forEach(eventName => {
-        canvas.addEventListener(eventName, event => {
-            if (event.buttons === 1) {
-                marioEntity.vel.set(0, 0);
-                marioEntity.pos.set(event.offsetX, event.offsetY);
-            }
-        });
-    });
-
 
     const timer = new Timer(1/60);
 
     timer.update = function updateTimer(deltaTime) {
         level.comp.draw(context);
         level.update(deltaTime);
-
-        marioEntity.vel.y += gravity;
     };
 
     timer.start();

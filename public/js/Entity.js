@@ -14,6 +14,7 @@ export default class Entity {
     constructor() {
         this.pos = new Vector2D(0, 0);
         this.vel = new Vector2D(0, 0);
+        this.size = new Vector2D(0, 0);
 
         this.behaviours = [];
     }
