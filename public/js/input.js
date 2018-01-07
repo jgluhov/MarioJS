@@ -1,6 +1,6 @@
 import Keyboard from './Keyboard.js';
 
-export function setupKeyboard(entity) {
+export function setupEntityKeyboard(entity) {
     const input = new Keyboard();
 
     input.addMapping('Space', keyState => {
@@ -17,6 +17,24 @@ export function setupKeyboard(entity) {
 
     input.addMapping('ArrowLeft', keyState => {
         entity.run.direction = -keyState;
+    });
+
+    return input;
+}
+
+export function setupCameraKeyboard(camera) {
+    const input = new Keyboard();
+
+    input.addMapping('Period', keyState => {
+        if (keyState) {
+            camera.pos.x += 20;
+        }
+    });
+
+    input.addMapping('Comma', keyState => {
+        if (keyState) {
+            camera.pos.x -= 20;
+        }
     });
 
     return input;

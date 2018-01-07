@@ -4,22 +4,34 @@ export function createBackgroundLayer(level, sprites) {
     const buffer = document.createElement('canvas'),
         context = buffer.getContext('2d');
 
-    buffer.width = 640;
+    buffer.width = 2048;
     buffer.height = 448;
 
     level.tiles.forEach((tile, x, y) => {
         sprites.drawTile(tile.name, context, x, y);
     });
 
-    return function drawBackgroundLayer(context) {
-        context.drawImage(buffer, 0, 0);
+    return function drawBackgroundLayer(context, camera) {
+        context.drawImage(buffer, -camera.pos.x, -camera.pos.y);
     }
 }
 
-export function createSpriteLayer(entities) {
-    return function drawSpriteLayer(context) {
+export function createSpriteLayer(entities, width = 64, height = 64) {
+    const spriteBuffer = document.createElement('canvas'),
+        spriteBufferContext = spriteBuffer.getContext('2d');
+
+    spriteBuffer.width = width;
+    spriteBuffer.height = height;
+
+    return function drawSpriteLayer(context, camera) {
         entities.forEach(entity => {
-            entity.draw(context);
+            spriteBufferContext.clearRect(0, 0, width, height);
+
+            entity.draw(spriteBufferContext);
+
+            context.drawImage(spriteBuffer,
+                entity.pos.x - camera.pos.x,
+                entity.pos.y - camera.pos.y)
         });
     }
 }
@@ -36,13 +48,13 @@ export function createCollisionLayer(level) {
         return getByIndexOriginal(indexX, indexY);
     };
 
-    return function drawCollision(context) {
+    return function drawCollision(context, camera) {
         context.strokeStyle = COLOR_BLUE;
         resolvedTiles.forEach(({indexX, indexY}) => {
             context.beginPath();
             context.rect(
-                indexX * tileSize,
-                indexY * tileSize,
+                indexX * tileSize - camera.pos.x,
+                indexY * tileSize - camera.pos.y,
                 tileSize,
                 tileSize
             );
@@ -53,8 +65,8 @@ export function createCollisionLayer(level) {
         level.entities.forEach(entity => {
             context.beginPath();
             context.rect(
-                entity.pos.x,
-                entity.pos.y,
+                entity.pos.x - camera.pos.x,
+                entity.pos.y - camera.pos.y,
                 entity.size.x,
                 entity.size.y
             );
