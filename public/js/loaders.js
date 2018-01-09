@@ -4,18 +4,20 @@ import {
     createSpriteLayer,
     createCollisionLayer
 } from './layers.js';
-import {loadBackgroundSprites} from './sprites.js';
-import {loadJSON} from './utils.js'
+import {loadJSON, loadImage} from './utils.js'
+import SpriteSheet from "./SpriteSheet.js";
 
 function createTiles(level, backgrounds) {
 
     const applyRange = (background, xStart, xLen, yStart, yLen) => {
         const xEnd = xStart + xLen;
         const yEnd = yStart + yLen;
+
         for (let x = xStart; x < xEnd; x++) {
             for (let y = yStart; y < yEnd; y++) {
                 level.tiles.set(x, y, {
-                    name: background.tile
+                    name: background.tile,
+                    type: background.type
                 });
             }
         }
@@ -37,11 +39,35 @@ function createTiles(level, backgrounds) {
     });
 }
 
+export function loadSpriteSheet(name) {
+    return loadJSON(`/sprites/${name}.json`)
+        .then(sheetSpec => {
+            return Promise
+                .all([
+                    sheetSpec,
+                    loadImage(sheetSpec.imageUrl)
+                ])
+                .then(([sheetSpec, image]) => {
+                    const sprites = new SpriteSheet(image, sheetSpec.tileW, sheetSpec.tileH);
+
+                    sheetSpec.tiles.forEach(tileSpec => {
+                        const [indexX, indexY] = tileSpec.index;
+                        sprites.defineTile(tileSpec.name, indexX, indexY);
+                    });
+
+                    return sprites;
+                });
+        })
+}
+
 export function loadLevel(name) {
-    return Promise.all([
-        loadJSON(`/levels/${name}.json`),
-        loadBackgroundSprites()
-    ]).then(([levelSpec, backgroundSprites]) => {
+    return loadJSON(`/levels/${name}.json`)
+        .then(levelSpec => {
+            return Promise.all([
+                levelSpec,
+                loadSpriteSheet(levelSpec.spriteSheet)
+            ]);
+        }).then(([levelSpec, backgroundSprites]) => {
         const level = new Level();
         createTiles(level, levelSpec.backgrounds);
 

@@ -76,3 +76,7 @@ export function createCollisionLayer(level) {
         resolvedTiles.length = 0;
     }
 }
+
+export function createCameraLayer() {
+    
+}
