@@ -27,13 +27,13 @@ export function setupCameraKeyboard(camera) {
 
     input.addMapping('Period', keyState => {
         if (keyState) {
-            camera.pos.x += 20;
+            camera.pos.x += 96;
         }
     });
 
     input.addMapping('Comma', keyState => {
         if (keyState) {
-            camera.pos.x -= 20;
+            camera.pos.x -= 96;
         }
     });
 

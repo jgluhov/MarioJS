@@ -4,6 +4,7 @@ import {createMarioEntity} from './entities.js';
 import {loadLevel} from './loaders.js';
 import {setupEntityKeyboard, setupCameraKeyboard} from './input.js';
 import {setupMouseControl} from './debug.js';
+import {createCameraLayer} from './layers.js';
 
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
@@ -16,6 +17,9 @@ Promise.all([
     window.camera = camera;
 
     level.entities.add(marioEntity);
+
+    const cameraLayer = createCameraLayer(camera);
+    level.comp.addLayer(cameraLayer);
 
     marioEntity.pos.set(300, 100);
 

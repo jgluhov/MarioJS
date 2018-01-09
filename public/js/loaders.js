@@ -2,7 +2,8 @@ import Level from './Level.js';
 import {
     createBackgroundLayer,
     createSpriteLayer,
-    createCollisionLayer
+    createCollisionLayer,
+    createCameraLayer
 } from './layers.js';
 import {loadJSON, loadImage} from './utils.js'
 import SpriteSheet from "./SpriteSheet.js";
