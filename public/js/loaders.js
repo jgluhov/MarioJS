@@ -49,12 +49,25 @@ export function loadSpriteSheet(name) {
                     loadImage(sheetSpec.imageUrl)
                 ])
                 .then(([sheetSpec, image]) => {
-                    const sprites = new SpriteSheet(image, sheetSpec.tileW, sheetSpec.tileH);
+                    const sprites = new SpriteSheet(
+                        image,
+                        sheetSpec.tileW,
+                        sheetSpec.tileH
+                    );
 
-                    sheetSpec.tiles.forEach(tileSpec => {
-                        const [indexX, indexY] = tileSpec.index;
-                        sprites.defineTile(tileSpec.name, indexX, indexY);
-                    });
+                    if (sheetSpec.tiles) {
+                        sheetSpec.tiles.forEach(tileSpec => {
+                            const [indexX, indexY] = tileSpec.index;
+                            sprites.defineTile(tileSpec.name, indexX, indexY);
+                        });
+                    }
+
+                    if (sheetSpec.frames) {
+                        sheetSpec.frames.forEach(frameSpec => {
+                            const [x, y, width, height] = frameSpec.rect;
+                            sprites.define(frameSpec.name, x, y, width, height);
+                        });
+                    }
 
                     return sprites;
                 });

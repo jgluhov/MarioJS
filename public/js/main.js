@@ -18,8 +18,8 @@ Promise.all([
 
     level.entities.add(marioEntity);
 
-    const cameraLayer = createCameraLayer(camera);
-    level.comp.addLayer(cameraLayer);
+    // const cameraLayer = createCameraLayer(camera);
+    // level.comp.addLayer(cameraLayer);
 
     marioEntity.pos.set(300, 100);
 
