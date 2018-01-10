@@ -16,7 +16,7 @@ export function createMarioEntity() {
 
             function routeFrame(mario) {
                 if (mario.run.direction !== 0) {
-                    const frameIndex = Math.floor(mario.run.distance / 5) % frames.length;
+                    const frameIndex = Math.floor(mario.run.distance / 20) % frames.length;
                     const frameName = frames[frameIndex];
 
                     return frameName;

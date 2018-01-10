@@ -7,8 +7,8 @@ export function createBackgroundLayer(level, sprites) {
     const buffer = document.createElement('canvas'),
         bufferContext = buffer.getContext('2d');
 
-    buffer.width = 450 + 16;
-    buffer.height = 448;
+    buffer.width = 976 + 16;
+    buffer.height = 480;
 
     let startIndex, endIndex;
 

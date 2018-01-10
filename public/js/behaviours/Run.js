@@ -5,7 +5,7 @@ export default class Run extends Behaviour {
         super('run');
 
         this.direction = 0;
-        this.speed = 10000;
+        this.speed = 30000;
         this.distance = 0;
     }
 
