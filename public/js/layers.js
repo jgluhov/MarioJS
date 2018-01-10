@@ -10,7 +10,7 @@ export function createBackgroundLayer(level, sprites) {
     buffer.width = 450 + 16;
     buffer.height = 448;
 
-    let startIndex, endIndex
+    let startIndex, endIndex;
 
     function redraw(drawFrom, drawTo) {
         if (drawFrom === startIndex && drawTo === endIndex) {
@@ -76,6 +76,7 @@ export function createCollisionLayer(level) {
 
     return function drawCollision(context, camera) {
         context.strokeStyle = COLOR_BLUE;
+        context.lineWidth = 1;
         resolvedTiles.forEach(({indexX, indexY}) => {
             context.beginPath();
             context.rect(
@@ -88,6 +89,7 @@ export function createCollisionLayer(level) {
         });
 
         context.strokeStyle = COLOR_RED;
+        context.lineWidth = 1;
         level.entities.forEach(entity => {
             context.beginPath();
             context.rect(

@@ -7,7 +7,7 @@ export function createMarioEntity() {
     return loadSpriteSheet('mario')
         .then(sprite => {
             const mario = new Entity();
-            mario.size.set(40, 56);
+            mario.size.set(65, 66);
 
             const frames = [
                 'run-1', 'run-2', 'run-3', 'run-4', 'run-5',
