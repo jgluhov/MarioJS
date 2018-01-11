@@ -7,6 +7,7 @@ import {
 } from './layers.js';
 import {loadJSON, loadImage} from './utils.js'
 import SpriteSheet from "./SpriteSheet.js";
+import {createAnimation} from "./animation.js";
 
 function createTiles(level, backgrounds) {
 
@@ -66,6 +67,13 @@ export function loadSpriteSheet(name) {
                         sheetSpec.frames.forEach(frameSpec => {
                             const [x, y, width, height] = frameSpec.rect;
                             sprites.define(frameSpec.name, x, y, width, height);
+                        });
+                    }
+
+                    if (sheetSpec.animations) {
+                        sheetSpec.animations.forEach(animationSpec => {
+                            const animation = createAnimation(animationSpec.frames, animationSpec.frameLen);
+                            sprites.defineAnimation(animationSpec.name, animation);
                         });
                     }
 
