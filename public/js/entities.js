@@ -5,18 +5,18 @@ import {loadSpriteSheet} from './loaders.js';
 import {createAnimation} from './animation.js';
 
 export function createMarioEntity() {
-    return loadSpriteSheet('mario')
+    return loadSpriteSheet('characters')
         .then(sprite => {
             const mario = new Entity();
-            mario.size.set(65, 66);
+            mario.size.set(20, 33);
 
-            const runAnimation = createAnimation([
-                'run-1', 'run-2', 'run-3', 'run-4', 'run-5',
-                'run-6', 'run-7', 'run-8', 'run-9', 'run-10'
-            ], 10);
+            const runAnimation = createAnimation(['run-1', 'run-2', 'run-3'], 12);
 
             function routeFrame(mario) {
-                if (mario.run.direction !== 0) {
+                if (mario.run.distance > 0) {
+                    if ((mario.vel.x > 0 && mario.run.direction < 0) || (mario.vel.x < 0 && mario.run.direction > 0)) {
+                        return 'break'
+                    }
                     return runAnimation(mario.run.distance);
                 }
 
