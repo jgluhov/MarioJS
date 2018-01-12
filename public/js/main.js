@@ -3,7 +3,6 @@ import Camera from './Camera.js'
 import {createMarioEntity} from './entities.js';
 import {loadLevel} from './loaders.js';
 import {setupEntityKeyboard, setupCameraKeyboard} from './input.js';
-import {setupMouseControl} from './debug.js';
 import {createCameraLayer} from './layers.js';
 
 const canvas = document.getElementById('screen');
@@ -29,13 +28,16 @@ Promise.all([
     const cameraInput = setupCameraKeyboard(camera);
     cameraInput.listenTo(window);
 
-    setupMouseControl(canvas, marioEntity, camera);
-
     const timer = new Timer(1/60);
 
     timer.update = function updateTimer(deltaTime) {
-        level.comp.draw(context, camera);
         level.update(deltaTime);
+
+        if (marioEntity.pos.x > 100) {
+            camera.pos.x = marioEntity.pos.x - 100;
+        }
+
+        level.comp.draw(context, camera);
     };
 
     timer.start();

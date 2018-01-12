@@ -8,7 +8,7 @@ export function createBackgroundLayer(level, sprites) {
         bufferContext = buffer.getContext('2d');
 
     buffer.width = 976 + 16;
-    buffer.height = 480;
+    buffer.height = 320;
 
     let startIndex, endIndex;
 
@@ -32,6 +32,7 @@ export function createBackgroundLayer(level, sprites) {
     }
 
     return function drawBackgroundLayer(context, camera) {
+
         const drawWidth = tileResolver.toIndex(camera.size.x),
             drawFrom = tileResolver.toIndex(camera.pos.x),
             drawTo = drawFrom + drawWidth;

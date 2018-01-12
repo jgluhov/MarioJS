@@ -12,11 +12,11 @@ export function setupEntityKeyboard(entity) {
     });
 
     input.addMapping('ArrowRight', keyState => {
-        entity.run.direction = keyState;
+        entity.run.direction += keyState ? 1 : -1;
     });
 
     input.addMapping('ArrowLeft', keyState => {
-        entity.run.direction = -keyState;
+        entity.run.direction += keyState ? -1 : 1;
     });
 
     return input;

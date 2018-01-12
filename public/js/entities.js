@@ -13,7 +13,7 @@ export function createMarioEntity() {
             const runAnimation = createAnimation([
                 'run-1', 'run-2', 'run-3', 'run-4', 'run-5',
                 'run-6', 'run-7', 'run-8', 'run-9', 'run-10'
-            ], 20);
+            ], 10);
 
             function routeFrame(mario) {
                 if (mario.run.direction !== 0) {
