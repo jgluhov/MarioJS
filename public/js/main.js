@@ -13,14 +13,13 @@ Promise.all([
     loadLevel('1-1')
 ]).then(([marioEntity, level]) => {
     const camera = new Camera();
-    window.camera = camera;
 
     level.entities.add(marioEntity);
 
     const cameraLayer = createCameraLayer(camera);
     level.comp.addLayer(cameraLayer);
 
-    marioEntity.pos.set(600, 100);
+    marioEntity.pos.set(600, 200);
 
     const entityInput = setupEntityKeyboard(marioEntity);
     entityInput.listenTo(window);

@@ -3,6 +3,7 @@ import Run from './behaviours/Run.js'
 import Jump from './behaviours/Jump.js';
 import {loadSpriteSheet} from './loaders.js';
 import {createAnimation} from './animation.js';
+import {SLOW_DRAG, FAST_DRAG} from "./constants.js";
 
 export function createMarioEntity() {
     return loadSpriteSheet('characters')
@@ -10,9 +11,13 @@ export function createMarioEntity() {
             const mario = new Entity();
             mario.size.set(20, 33);
 
-            const runAnimation = createAnimation(['run-1', 'run-2', 'run-3'], 12);
+            const runAnimation = createAnimation(['run-1', 'run-2', 'run-3'], 17);
 
             function routeFrame(mario) {
+                if (mario.jump.falling) {
+                    return 'jump';
+                }
+
                 if (mario.run.distance > 0) {
                     if ((mario.vel.x > 0 && mario.run.direction < 0) || (mario.vel.x < 0 && mario.run.direction > 0)) {
                         return 'break'
@@ -25,6 +30,10 @@ export function createMarioEntity() {
 
             mario.draw = function drawMario(context) {
                 sprite.draw(routeFrame(this), context, 0, 0, this.run.heading < 0);
+            };
+
+            mario.turbo = function setTurboState(turboOn) {
+                this.run.dragFactor = turboOn ? FAST_DRAG : SLOW_DRAG;
             };
 
             mario.addBehaviours(new Run());
