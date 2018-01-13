@@ -11,6 +11,8 @@ export function createBackgroundLayer(level, tiles, sprites) {
     buffer.height = 320;
 
     function redraw(startIndex, endIndex) {
+        bufferContext.clearRect(0, 0, buffer.width, buffer.height);
+
         for (let x = startIndex; x <= endIndex; x++) {
             const column = tiles.grid[x];
 
@@ -27,7 +29,6 @@ export function createBackgroundLayer(level, tiles, sprites) {
     }
 
     return function drawBackgroundLayer(context, camera) {
-
         const drawWidth = tileResolver.toIndex(camera.size.x),
             drawFrom = tileResolver.toIndex(camera.pos.x),
             drawTo = drawFrom + drawWidth;
