@@ -1,8 +1,8 @@
 import {COLOR_BLUE, COLOR_RED, COLOR_PURPLE} from './constants.js';
+import TileResolver from "./TileResolver.js";
 
-export function createBackgroundLayer(level, sprites) {
-    const tiles = level.tiles,
-        tileResolver = level.tileCollider.tiles;
+export function createBackgroundLayer(level, tiles, sprites) {
+    const tileResolver = new TileResolver(tiles);
 
     const buffer = document.createElement('canvas'),
         bufferContext = buffer.getContext('2d');
@@ -10,12 +10,7 @@ export function createBackgroundLayer(level, sprites) {
     buffer.width = 976 + 16;
     buffer.height = 320;
 
-    let startIndex, endIndex;
-
-    function redraw(drawFrom, drawTo) {
-        startIndex = drawFrom;
-        endIndex = drawTo;
-
+    function redraw(startIndex, endIndex) {
         for (let x = startIndex; x <= endIndex; x++) {
             const column = tiles.grid[x];
 

@@ -21,7 +21,7 @@ export default class TileResolver {
     }
 
     getByIndex(indexX, indexY) {
-        const tile = this.matrix[indexX][indexY];
+        const tile = this.matrix.get(indexX, indexY);
 
         if (tile) {
             const x1 = indexX * this.tileSize;

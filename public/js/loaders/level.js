@@ -6,6 +6,7 @@ import {
 import {loadJSON} from "../utils.js";
 import Level from "../Level.js";
 import {loadSpriteSheet} from '../loaders.js';
+import {Matrix} from "../math.js";
 
 export function loadLevel(name) {
     return loadJSON(`/levels/${name}.json`)
@@ -14,18 +15,16 @@ export function loadLevel(name) {
                 levelSpec,
                 loadSpriteSheet(levelSpec.spriteSheet)
             ]);
-        }).then(([levelSpec, tileSprites]) => {
+        }).then(([levelSpec, backgroundSprites]) => {
             const level = new Level();
+            const collisionGrid = createCollisionGrid(levelSpec.tiles, levelSpec.patterns);
 
-            for (const {tile, x, y} of expandTiles(levelSpec.tiles, levelSpec.patterns)) {
-                level.tiles.set(x, y, {
-                    name: tile.name,
-                    type: tile.type
-                });
-            }
+            level.setCollisionGrid(collisionGrid);
 
-            const tileLayer = createBackgroundLayer(level, tileSprites);
-            level.comp.addLayer(tileLayer);
+            const backgroundGrid = createBackgroundGrid(levelSpec.tiles, levelSpec.patterns);
+
+            const backgroundLayer = createBackgroundLayer(level, backgroundGrid, backgroundSprites);
+            level.comp.addLayer(backgroundLayer);
 
             const spriteLayer = createSpriteLayer(level.entities);
             level.comp.addLayer(spriteLayer);
@@ -35,6 +34,26 @@ export function loadLevel(name) {
 
             return level;
         });
+}
+
+function createCollisionGrid(tiles, patterns) {
+    const grid = new Matrix();
+
+    for (const {tile, x, y} of expandTiles(tiles, patterns)) {
+        grid.set(x, y, {type: tile.type});
+    }
+
+    return grid;
+}
+
+function createBackgroundGrid(tiles, patterns) {
+    const grid = new Matrix();
+
+    for (const {tile, x, y} of expandTiles(tiles, patterns)) {
+        grid.set(x, y, {name: tile.name});
+    }
+
+    return grid;
 }
 
 function* expandSpan(xStart, xLen, yStart, yLen) {
@@ -93,6 +112,5 @@ function expandTiles(tiles, patterns) {
     }
 
     walkTiles(tiles, 0, 0);
-
     return expandedTiles;
 }
