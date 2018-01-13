@@ -16,7 +16,13 @@ export function loadLevel(name) {
             ]);
         }).then(([levelSpec, tileSprites]) => {
             const level = new Level();
-            createTiles(level, levelSpec.tiles, levelSpec.patterns);
+
+            for (const {tile, x, y} of expandTiles(levelSpec.tiles, levelSpec.patterns)) {
+                level.tiles.set(x, y, {
+                    name: tile.name,
+                    type: tile.type
+                });
+            }
 
             const tileLayer = createBackgroundLayer(level, tileSprites);
             level.comp.addLayer(tileLayer);
@@ -31,52 +37,62 @@ export function loadLevel(name) {
         });
 }
 
-function expandSpan(xStart, xLen, yStart, yLen) {
-    const coords = [],
-        xEnd = xStart + xLen,
+function* expandSpan(xStart, xLen, yStart, yLen) {
+    const xEnd = xStart + xLen,
         yEnd = yStart + yLen;
 
     for (let x = xStart; x < xEnd; x++) {
         for (let y = yStart; y < yEnd; y++) {
-            coords.push({x, y});
+            yield {x, y};
+        }
+    }
+}
+
+function expandRange(range) {
+    if (range.length === 4) {
+        const [xStart, xLen, yStart, yLen] = range;
+        return expandSpan(xStart, xLen, yStart, yLen);
+    } else if (range.length === 3) {
+        const [xStart, xLen, yStart] = range;
+        return expandSpan(xStart, xLen, yStart, 1);
+    } else if (range.length === 2) {
+        const [xStart, yStart] = range;
+        return expandSpan(xStart, 1, yStart, 1);
+    }
+}
+
+function* expandRanges(ranges) {
+    for (const range of ranges) {
+        for (const item of expandRange(range)) {
+            yield item;
+        }
+    }
+}
+
+function expandTiles(tiles, patterns) {
+    const expandedTiles = [];
+
+    function walkTiles(tiles, offsetX, offsetY) {
+        for (const tile of tiles) {
+            for(const {x, y} of expandRanges(tile.ranges)) {
+                const derivedX = x + offsetX,
+                    derivedY = y + offsetY;
+
+                if (tile.pattern) {
+                    const tiles = patterns[tile.pattern].tiles;
+                    walkTiles(tiles, derivedX, derivedY);
+                } else {
+                    expandedTiles.push({
+                        tile,
+                        x: derivedX,
+                        y: derivedY
+                    });
+                }
+            }
         }
     }
 
-    return coords;
-}
+    walkTiles(tiles, 0, 0);
 
-function createTiles(level, tiles, patterns, offsetX = 0, offsetY = 0) {
-
-    const applyRange = (tile, xStart, xLen, yStart, yLen) => {
-        for(const {x, y} of expandSpan(xStart, xLen, yStart, yLen)) {
-            const derivedX = x + offsetX,
-                derivedY = y + offsetY;
-
-            if (tile.pattern) {
-                console.log('pattern detected', patterns[tile.pattern]);
-                const tiles = patterns[tile.pattern].tiles;
-                createTiles(level, tiles, patterns, derivedX, derivedY);
-            } else {
-                level.tiles.set(derivedX, derivedY, {
-                    name: tile.name,
-                    type: tile.type
-                });
-            }
-        }
-    };
-
-    tiles.forEach(tile => {
-        tile.ranges.forEach(range => {
-            if (range.length === 4) {
-                const [xStart, xLen, yStart, yLen] = range;
-                applyRange(tile, xStart, xLen, yStart, yLen);
-            } else if (range.length === 3) {
-                const [xStart, xLen, yStart] = range;
-                applyRange(tile, xStart, xLen, yStart, 1);
-            } else if (range.length === 2) {
-                const [xStart, yStart] = range;
-                applyRange(tile, xStart, 1, yStart, 1);
-            }
-        });
-    });
+    return expandedTiles;
 }
