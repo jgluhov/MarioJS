@@ -207,7 +207,7 @@
         {
             "pattern": "cloud-single",
             "ranges": [
-                [75, 5]
+                [5, 5]
             ]
         }
     ],
