@@ -9,7 +9,7 @@ export function createMarioEntity() {
     return loadSpriteSheet('characters')
         .then(sprite => {
             const mario = new Entity();
-            mario.size.set(20, 33);
+            mario.size.set(20, 32);
 
             const runAnimation = createAnimation(['run-1', 'run-2', 'run-3'], 17);
 
