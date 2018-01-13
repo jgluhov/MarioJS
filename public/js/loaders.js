@@ -57,12 +57,12 @@ export function loadLevel(name) {
                 levelSpec,
                 loadSpriteSheet(levelSpec.spriteSheet)
             ]);
-        }).then(([levelSpec, backgroundSprites]) => {
+        }).then(([levelSpec, tileSprites]) => {
         const level = new Level();
-        createTiles(level, levelSpec.backgrounds, levelSpec.patterns);
+        createTiles(level, levelSpec.tiles, levelSpec.patterns);
 
-        const backgroundLayer = createBackgroundLayer(level, backgroundSprites);
-        level.comp.addLayer(backgroundLayer);
+        const tileLayer = createBackgroundLayer(level, tileSprites);
+        level.comp.addLayer(tileLayer);
 
         const spriteLayer = createSpriteLayer(level.entities);
         level.comp.addLayer(spriteLayer);
@@ -74,9 +74,9 @@ export function loadLevel(name) {
     });
 }
 
-function createTiles(level, backgrounds, patterns, offsetX = 0, offsetY = 0) {
+function createTiles(level, tiles, patterns, offsetX = 0, offsetY = 0) {
 
-    const applyRange = (background, xStart, xLen, yStart, yLen) => {
+    const applyRange = (tile, xStart, xLen, yStart, yLen) => {
         const xEnd = xStart + xLen;
         const yEnd = yStart + yLen;
 
@@ -85,31 +85,31 @@ function createTiles(level, backgrounds, patterns, offsetX = 0, offsetY = 0) {
                 const derivedX = x + offsetX,
                     derivedY = y + offsetY;
 
-                if (background.pattern) {
-                    console.log('pattern detected', patterns[background.pattern]);
-                    const backgrounds = patterns[background.pattern].backgrounds;
-                    createTiles(level, backgrounds, patterns, derivedX, derivedY);
+                if (tile.pattern) {
+                    console.log('pattern detected', patterns[tile.pattern]);
+                    const tiles = patterns[tile.pattern].tiles;
+                    createTiles(level, tiles, patterns, derivedX, derivedY);
                 } else {
                     level.tiles.set(derivedX, derivedY, {
-                        name: background.tile,
-                        type: background.type
+                        name: tile.name,
+                        type: tile.type
                     });
                 }
             }
         }
     };
 
-    backgrounds.forEach(background => {
-        background.ranges.forEach(range => {
+    tiles.forEach(tile => {
+        tile.ranges.forEach(range => {
             if (range.length === 4) {
                 const [xStart, xLen, yStart, yLen] = range;
-                applyRange(background, xStart, xLen, yStart, yLen);
+                applyRange(tile, xStart, xLen, yStart, yLen);
             } else if (range.length === 3) {
                 const [xStart, xLen, yStart] = range;
-                applyRange(background, xStart, xLen, yStart, 1);
+                applyRange(tile, xStart, xLen, yStart, 1);
             } else if (range.length === 2) {
                 const [xStart, yStart] = range;
-                applyRange(background, xStart, 1, yStart, 1);
+                applyRange(tile, xStart, 1, yStart, 1);
             }
         });
     });
