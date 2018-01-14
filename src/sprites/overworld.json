@@ -1,0 +1,493 @@
+{
+    "imageUrl": "/img/tiles.png",
+    "tileW": 16,
+    "tileH": 16,
+
+    "tiles": [
+        {
+            "name": "ground",
+            "index": [0, 0]
+        },
+        {
+            "name": "sky",
+            "index": [6, 32]
+        },
+        {
+            "name": "chocolate",
+            "index": [0, 1]
+        },
+        {
+            "name": "bricks",
+            "index": [1, 0]
+        },
+        {
+            "name": "chance",
+            "index": [24, 0]
+        },
+        {
+            "name": "chance-1",
+            "index": [24, 0]
+        },
+        {
+            "name": "chance-2",
+            "index": [25, 0]
+        },
+        {
+            "name": "chance-3",
+            "index": [26, 0]
+        },
+        {
+            "name": "pipe-insert-vert-left",
+            "index": [0, 8]
+        },
+        {
+            "name": "pipe-insert-vert-right",
+            "index": [1, 8]
+        },
+        {
+            "name": "pipe-vert-left",
+            "index": [0, 9]
+        },
+        {
+            "name": "pipe-vert-right",
+            "index": [1, 9]
+        },
+        {
+            "name": "cloud-1-1",
+            "index": [0, 20]
+        },
+        {
+            "name": "cloud-1-2",
+            "index": [1, 20]
+        },
+        {
+            "name": "cloud-1-3",
+            "index": [2, 20]
+        },
+        {
+            "name": "cloud-2-1",
+            "index": [0, 21]
+        },
+        {
+            "name": "cloud-2-2",
+            "index": [1, 21]
+        },
+        {
+            "name": "cloud-2-3",
+            "index": [2, 21]
+        },
+        {
+            "name": "ground-gross-1-1",
+            "index": [0, 28]
+        },
+        {
+            "name": "ground-gross-1-2",
+            "index": [1, 28]
+        },
+        {
+            "name": "ground-gross-1-3",
+            "index": [2, 28]
+        },
+        {
+            "name": "ground-gross-1-4",
+            "index": [3, 28]
+        },
+        {
+            "name": "ground-gross-1-5",
+            "index": [4, 28]
+        },
+        {
+            "name": "ground-gross-1-6",
+            "index": [5, 28]
+        },
+        {
+            "name": "ground-gross-1-7",
+            "index": [6, 28]
+        },
+        {
+            "name": "ground-gross-1-8",
+            "index": [7, 28]
+        },
+        {
+            "name": "ground-gross-1-9",
+            "index": [8, 28]
+        },
+        {
+            "name": "ground-gross-1-10",
+            "index": [9, 28]
+        },
+        {
+            "name": "ground-gross-1-11",
+            "index": [10, 28]
+        },
+        {
+            "name": "ground-gross-1-12",
+            "index": [11, 28]
+        },
+        {
+            "name": "ground-gross-1-13",
+            "index": [12, 28]
+        },
+        {
+            "name": "ground-gross-1-14",
+            "index": [13, 28]
+        },
+        {
+            "name": "ground-gross-1-15",
+            "index": [14, 28]
+        },
+        {
+            "name": "ground-gross-1-16",
+            "index": [15, 28]
+        },
+        {
+            "name": "ground-gross-1-17",
+            "index": [16, 28]
+        },
+        {
+            "name": "ground-gross-1-18",
+            "index": [17, 28]
+        },
+        {
+            "name": "ground-gross-1-19",
+            "index": [18, 28]
+        },
+        {
+            "name": "ground-gross-1-20",
+            "index": [19, 28]
+        },
+        {
+            "name": "ground-gross-1-21",
+            "index": [20, 28]
+        },
+        {
+            "name": "ground-gross-1-22",
+            "index": [21, 28]
+        },
+        {
+            "name": "ground-gross-1-23",
+            "index": [22, 28]
+        },
+        {
+            "name": "ground-gross-1-24",
+            "index": [23, 28]
+        },
+        {
+            "name": "ground-gross-1-25",
+            "index": [24, 28]
+        },
+        {
+            "name": "ground-gross-1-26",
+            "index": [25, 28]
+        },
+        {
+            "name": "ground-gross-1-27",
+            "index": [26, 28]
+        },
+        {
+            "name": "ground-gross-2-1",
+            "index": [0, 29]
+        },
+        {
+            "name": "ground-gross-2-2",
+            "index": [1, 29]
+        },
+        {
+            "name": "ground-gross-2-3",
+            "index": [2, 29]
+        },
+        {
+            "name": "ground-gross-2-4",
+            "index": [3, 29]
+        },
+        {
+            "name": "ground-gross-2-5",
+            "index": [4, 29]
+        },
+        {
+            "name": "ground-gross-2-6",
+            "index": [5, 29]
+        },
+        {
+            "name": "ground-gross-2-7",
+            "index": [6, 29]
+        },
+        {
+            "name": "ground-gross-2-8",
+            "index": [7, 29]
+        },
+        {
+            "name": "ground-gross-2-9",
+            "index": [8, 29]
+        },
+        {
+            "name": "ground-gross-2-10",
+            "index": [9, 29]
+        },
+        {
+            "name": "ground-gross-2-11",
+            "index": [10, 29]
+        },
+        {
+            "name": "ground-gross-2-12",
+            "index": [11, 29]
+        },
+        {
+            "name": "ground-gross-2-13",
+            "index": [12, 29]
+        },
+        {
+            "name": "ground-gross-2-14",
+            "index": [13, 29]
+        },
+        {
+            "name": "ground-gross-2-15",
+            "index": [14, 29]
+        },
+        {
+            "name": "ground-gross-2-16",
+            "index": [15, 29]
+        },
+        {
+            "name": "ground-gross-2-17",
+            "index": [16, 29]
+        },
+        {
+            "name": "ground-gross-2-18",
+            "index": [17, 29]
+        },
+        {
+            "name": "ground-gross-2-19",
+            "index": [18, 29]
+        },
+        {
+            "name": "ground-gross-2-20",
+            "index": [19, 29]
+        },
+        {
+            "name": "ground-gross-2-21",
+            "index": [20, 29]
+        },
+        {
+            "name": "ground-gross-2-22",
+            "index": [21, 29]
+        },
+        {
+            "name": "ground-gross-2-23",
+            "index": [22, 29]
+        },
+        {
+            "name": "ground-gross-2-24",
+            "index": [23, 29]
+        },
+        {
+            "name": "ground-gross-2-25",
+            "index": [24, 29]
+        },
+        {
+            "name": "ground-gross-2-26",
+            "index": [25, 29]
+        },
+        {
+            "name": "ground-gross-2-27",
+            "index": [26, 29]
+        },
+        {
+            "name": "ground-gross-3-1",
+            "index": [0, 30]
+        },
+        {
+            "name": "ground-gross-3-2",
+            "index": [1, 30]
+        },
+        {
+            "name": "ground-gross-3-3",
+            "index": [2, 30]
+        },
+        {
+            "name": "ground-gross-3-4",
+            "index": [3, 30]
+        },
+        {
+            "name": "ground-gross-3-5",
+            "index": [4, 30]
+        },
+        {
+            "name": "ground-gross-3-6",
+            "index": [5, 30]
+        },
+        {
+            "name": "ground-gross-3-7",
+            "index": [6, 30]
+        },
+        {
+            "name": "ground-gross-3-8",
+            "index": [7, 30]
+        },
+        {
+            "name": "ground-gross-3-9",
+            "index": [8, 30]
+        },
+        {
+            "name": "ground-gross-3-10",
+            "index": [9, 30]
+        },
+        {
+            "name": "ground-gross-3-11",
+            "index": [10, 30]
+        },
+        {
+            "name": "ground-gross-3-12",
+            "index": [11, 30]
+        },
+        {
+            "name": "ground-gross-3-13",
+            "index": [12, 30]
+        },
+        {
+            "name": "ground-gross-3-14",
+            "index": [13, 30]
+        },
+        {
+            "name": "ground-gross-3-15",
+            "index": [14, 30]
+        },
+        {
+            "name": "ground-gross-3-16",
+            "index": [15, 30]
+        },
+        {
+            "name": "ground-gross-3-17",
+            "index": [16, 30]
+        },
+        {
+            "name": "ground-gross-3-18",
+            "index": [17, 30]
+        },
+        {
+            "name": "ground-gross-3-19",
+            "index": [18, 30]
+        },
+        {
+            "name": "ground-gross-3-20",
+            "index": [19, 30]
+        },
+        {
+            "name": "ground-gross-3-21",
+            "index": [20, 30]
+        },
+        {
+            "name": "ground-gross-3-22",
+            "index": [21, 30]
+        },
+        {
+            "name": "ground-gross-3-23",
+            "index": [22, 30]
+        },
+        {
+            "name": "ground-gross-3-24",
+            "index": [23, 30]
+        },
+        {
+            "name": "ground-gross-3-25",
+            "index": [24, 30]
+        },
+        {
+            "name": "ground-gross-3-26",
+            "index": [25, 30]
+        },
+        {
+            "name": "ground-gross-3-27",
+            "index": [26, 30]
+        },
+        {
+            "name": "brick-1-1",
+            "index": [0, 31]
+        },
+        {
+            "name": "brick-1-2",
+            "index": [1, 31]
+        },
+        {
+            "name": "brick-2-1",
+            "index": [0, 32]
+        },
+        {
+            "name": "brick-2-2",
+            "index": [1, 32]
+        },
+        {
+            "name": "cloud-blue-1-1",
+            "index": [0, 33]
+        },
+        {
+            "name": "cloud-blue-1-2",
+            "index": [1, 33]
+        },
+        {
+            "name": "cloud-blue-1-3",
+            "index": [2, 33]
+        },
+        {
+            "name": "cloud-blue-1-4",
+            "index": [3, 33]
+        },
+        {
+            "name": "cloud-blue-1-5",
+            "index": [4, 33]
+        },
+        {
+            "name": "cloud-blue-2-1",
+            "index": [0, 34]
+        },
+        {
+            "name": "cloud-blue-2-2",
+            "index": [1, 34]
+        },
+        {
+            "name": "cloud-blue-2-3",
+            "index": [2, 34]
+        },
+        {
+            "name": "cloud-blue-2-4",
+            "index": [3, 34]
+        },
+        {
+            "name": "cloud-blue-2-5",
+            "index": [4, 34]
+        },
+        {
+            "name": "cloud-blue-3-1",
+            "index": [0, 35]
+        },
+        {
+            "name": "cloud-blue-3-2",
+            "index": [1, 35]
+        },
+        {
+            "name": "cloud-blue-3-3",
+            "index": [2, 35]
+        },
+        {
+            "name": "cloud-blue-3-4",
+            "index": [3, 35]
+        },
+        {
+            "name": "cloud-blue-3-5",
+            "index": [4, 35]
+        }
+    ],
+    "animations": [
+        {
+            "name": "chance",
+            "frameLen": 0.12,
+            "frames": [
+                "chance-1",
+                "chance-1",
+                "chance-2",
+                "chance-3",
+                "chance-2"
+            ]
+        }
+    ]
+}

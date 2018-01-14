@@ -4,6 +4,7 @@ import {createMarioEntity} from './entities.js';
 import {loadLevel} from './loaders/level.js';
 import {setupEntityKeyboard, setupCameraKeyboard} from './input.js';
 import {createCameraLayer} from './layers.js';
+import '../css/styles.css'
 
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');

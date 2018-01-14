@@ -1,0 +1,29 @@
+{
+    "imageUrl": "/img/characters.gif",
+    "frames": [
+        {
+            "name": "idle",
+            "rect": [256, 0, 19, 33]
+        },
+        {
+            "name": "run-1",
+            "rect": [294, 0, 19, 33]
+        },
+        {
+            "name": "run-2",
+            "rect": [312, 0, 19, 33]
+        },
+        {
+            "name": "run-3",
+            "rect": [329, 0, 19, 33]
+        },
+        {
+            "name": "break",
+            "rect": [348, 0, 19, 33]
+        },
+        {
+            "name": "jump",
+            "rect": [367, 0, 19, 33]
+        }
+    ]
+}

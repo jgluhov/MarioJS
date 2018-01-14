@@ -22,7 +22,16 @@
   },
   "homepage": "https://github.com/jgluhov/MarioJS#readme",
   "dependencies": {
-    "serve": "^6.4.3"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "serve": "^6.4.3",
+    "webpack": "^3.10.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "css-loader": "^0.28.8",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.1"
+  }
 }
