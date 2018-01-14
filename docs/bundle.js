@@ -182,7 +182,7 @@ class Behaviour {
 
 
 function loadSpriteSheet(name) {
-    return Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* loadJSON */])(`/sprites/${name}.json`).then(sheetSpec => {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* loadJSON */])(`sprites/${name}.json`).then(sheetSpec => {
         return Promise.all([sheetSpec, Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* loadImage */])(sheetSpec.imageUrl)]).then(([sheetSpec, image]) => {
             const sprites = new __WEBPACK_IMPORTED_MODULE_1__SpriteSheet_js__["a" /* default */](image, sheetSpec.tileW, sheetSpec.tileH);
 
@@ -835,7 +835,7 @@ class SpriteSheet {
 
 
 function loadLevel(name) {
-    return Object(__WEBPACK_IMPORTED_MODULE_1__utils_js__["b" /* loadJSON */])(`/levels/${name}.json`).then(levelSpec => {
+    return Object(__WEBPACK_IMPORTED_MODULE_1__utils_js__["b" /* loadJSON */])(`levels/${name}.json`).then(levelSpec => {
         return Promise.all([levelSpec, Object(__WEBPACK_IMPORTED_MODULE_3__loaders_js__["a" /* loadSpriteSheet */])(levelSpec.spriteSheet)]);
     }).then(([levelSpec, backgroundSprites]) => {
         const level = new __WEBPACK_IMPORTED_MODULE_2__Level_js__["a" /* default */]();

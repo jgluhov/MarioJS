@@ -3,7 +3,7 @@ import SpriteSheet from "./SpriteSheet.js";
 import {createAnimation} from "./animation.js";
 
 export function loadSpriteSheet(name) {
-    return loadJSON(`/sprites/${name}.json`)
+    return loadJSON(`sprites/${name}.json`)
         .then(sheetSpec => {
             return Promise
                 .all([

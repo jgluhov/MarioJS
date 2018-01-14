@@ -9,7 +9,7 @@ import {loadSpriteSheet} from '../loaders.js';
 import {Matrix} from "../math.js";
 
 export function loadLevel(name) {
-    return loadJSON(`/levels/${name}.json`)
+    return loadJSON(`levels/${name}.json`)
         .then(levelSpec => {
             return Promise.all([
                 levelSpec,
