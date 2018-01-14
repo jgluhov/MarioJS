@@ -10,7 +10,7 @@
         },
         {
             "name": "sky",
-            "index": [3, 23]
+            "index": [6, 32]
         },
         {
             "name": "chocolate",
@@ -399,6 +399,22 @@
         {
             "name": "ground-gross-3-27",
             "index": [26, 30]
+        },
+        {
+            "name": "brick-1-1",
+            "index": [0, 31]
+        },
+        {
+            "name": "brick-1-2",
+            "index": [1, 31]
+        },
+        {
+            "name": "brick-2-1",
+            "index": [0, 32]
+        },
+        {
+            "name": "brick-2-2",
+            "index": [1, 32]
         }
     ],
     "animations": [

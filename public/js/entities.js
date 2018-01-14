@@ -18,7 +18,6 @@ export function createMarioEntity() {
             ], 7);
 
             function routeFrame(mario) {
-
                 if (mario.jump.falling) {
                     return 'jump';
                 }

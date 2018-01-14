@@ -7,8 +7,8 @@ export function createBackgroundLayer(level, tiles, sprites) {
     const buffer = document.createElement('canvas'),
         bufferContext = buffer.getContext('2d');
 
-    buffer.width = 976 + 16;
-    buffer.height = 320;
+    buffer.width = 1264 + 16;
+    buffer.height = 480;
 
     function redraw(startIndex, endIndex) {
         bufferContext.clearRect(0, 0, buffer.width, buffer.height);

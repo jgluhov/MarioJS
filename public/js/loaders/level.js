@@ -35,8 +35,8 @@ export function loadLevel(name) {
             const spriteLayer = createSpriteLayer(level.entities);
             level.comp.addLayer(spriteLayer);
 
-            const collisionLayer = createCollisionLayer(level);
-            level.comp.addLayer(collisionLayer);
+            // const collisionLayer = createCollisionLayer(level);
+            // level.comp.addLayer(collisionLayer);
 
             return level;
         });
