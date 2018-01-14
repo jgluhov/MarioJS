@@ -230,7 +230,12 @@ function loadImage(url) {
 }
 
 function loadJSON(url) {
-    return fetch(url).then(res => res.json());
+    const options = {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" }
+    };
+
+    return fetch(url, options).then(res => res.json());
 }
 
 /***/ }),

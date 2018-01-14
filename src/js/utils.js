@@ -9,6 +9,11 @@ export function loadImage(url) {
 }
 
 export function loadJSON(url) {
-    return fetch(url)
+    const options = {
+       method: 'GET',
+       headers: { "Content-Type": "application/json" }
+     };
+
+    return fetch(url, options)
         .then(res => res.json());
 }
